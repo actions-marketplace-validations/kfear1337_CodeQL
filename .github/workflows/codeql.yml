@@ -75,6 +75,7 @@ jobs:
         with:
           languages: ${{ env.languages }}
           setup-python-dependencies: false
+          config: .github/codeql/codeql-config.yml
 
       - name: Perform CodeQL-Security Analysis
         id: CodeQL
