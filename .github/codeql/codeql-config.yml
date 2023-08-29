@@ -12,11 +12,11 @@ packs:
   python:
     - codeql/python-queries
     #- codeql/python-all
-    #- python-upgrades
+    #- codeql/python-upgrades
   go:
-    - go-all
-    #- go-all
-    #- go-upgrade
+    - codeql/go-queries
+    #- codeql/go-all
+    #- codeql/go-upgrade
 
 # query-filters:
 # - exclude:
