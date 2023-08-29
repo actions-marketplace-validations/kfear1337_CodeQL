@@ -40,8 +40,18 @@ The workflow consists of the following steps:
 To use this workflow in your repository, follow these steps:
 
 1. Create a new file named `.github/workflows/codeql.yml` in your repository.
-2. Copy the contents of the codeql.yml file into the newly created codeql.yml file.
-3. Commit and push the changes to your repository.
+2. Copy the contents of the `codeql.yml` file from the repository you mentioned into the newly created `codeql.yml` file.
+3. Create a new directory named `.github/codeql` in your repository.
+4. Create a new file named `codeql-config.yml` inside the `.github/codeql` directory.
+5. Copy the contents of your CodeQL configuration file into the newly created `.github/codeql/codeql-config.yml` file.
+6. Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
+7. Commit and push the changes to your repository.
+
+The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC), based on the provided configuration.
+
+Please make sure that the workflow file is located in the `.github/workflows` directory, and the CodeQL configuration file is located in the `.github/codeql` directory of your repository.
+
+Feel free to modify the workflow file and the CodeQL configuration file to fit your specific needs and configurations.
 
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC).
 
@@ -90,7 +100,17 @@ Here's a roadmap for adding support for other programming languages:
 5. Modify the CodeQL analysis step to include the new language.
 6. Update the SARIF report names in the "Results" section to include the new language.
 
-Follow these steps to extend the workflow for new languages and update the SARIF report names accordingly.
+To add support for a new programming language:
+
+1. Identify the programming language you want to add support for. For example, let's say you want to add support for Ruby.
+2. Research the CodeQL setup and analysis requirements for Ruby. Check the CodeQL documentation for any language-specific instructions.
+3. Modify the workflow file (`codeql.yml`) to include the new language in the `matrix.language` field. Add `'ruby'` to the list of supported languages.
+4. Add steps to set up the required environment and install dependencies for Ruby. For example, you might need to install Ruby and any necessary gems.
+5. Modify the CodeQL analysis step to include the new language. Update the `languages` field in the `Initialize CodeQL` step to include `'ruby'`.
+6. Update the SARIF report names in the "Results" section to include the new language. For example, you can add a line like `- Ruby SARIF: Contains the results of the Ruby analysis.`.
+
+Please note that the current version of this repository only supports Python, JavaScript, TypeScript, and Go. If you want to add support for additional languages, you'll need to follow the steps mentioned above and adjust the workflow file accordingly.
+
 
 ## License
 
