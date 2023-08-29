@@ -11,7 +11,7 @@ This GitHub Actions workflow runs CodeQL security analysis on your repository. I
 
 ## How it works?
 
-Example for if an attacker pull request:
+Example for if an someone pull request:
 
 [Pull Request](https://github.com/kfear1337/CodeQL/pull/1)
 
