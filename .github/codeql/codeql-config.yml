@@ -1,5 +1,5 @@
 # This a codeql custom config put in path '/.github/codeql/'
-    
+
 packs:
   # Use these packs for JavaScript and TypeScript analysis
   javascript:
@@ -14,9 +14,9 @@ packs:
     #- codeql/python-all
     #- python-upgrades
   go:
-  - go-queries
-  #- go-all
-  #- go-upgrade
+    - go-queries
+    #- go-all
+    #- go-upgrade
 
 # query-filters:
 # - exclude:
@@ -24,4 +24,4 @@ packs:
 #       - note
 #       - warning
 
-  disable-default-queries: true
+disable-default-queries: true
