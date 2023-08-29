@@ -74,8 +74,9 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: ${{ env.languages }}
+          config-file: ./.github/codeql/codeql-config.yml
           setup-python-dependencies: false
-          config: .github/codeql/codeql-config.yml
+          queries: +security-and-quality,security-experimental
 
       - name: Perform CodeQL-Security Analysis
         id: CodeQL

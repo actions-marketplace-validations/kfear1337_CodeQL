@@ -24,5 +24,4 @@ packs:
 #       - note
 #       - warning
 
-disable-default-queries: true
-queries: +security-and-quality,security-experimental
+  disable-default-queries: true
