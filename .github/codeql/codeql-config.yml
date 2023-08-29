@@ -1,0 +1,28 @@
+# This a codeql custom config put in path '/.github/codeql/'
+    
+packs:
+  # Use these packs for JavaScript and TypeScript analysis
+  javascript:
+    - codeql/javascript-experimental-atm-queries
+    # disable this since only need queries
+    #- codeql/javascript-all
+    - codeql/javascript-queries
+    # test a tutorial 
+    #- codeql/tutorial
+  python:
+    - codeql/python-queries
+    #- codeql/python-all
+    #- python-upgrades
+  go:
+  - go-queries
+  #- go-all
+  #- go-upgrade
+
+# query-filters:
+# - exclude:
+#     problem.severity:
+#       - note
+#       - warning
+
+disable-default-queries: true
+queries: +security-and-quality,security-experimental

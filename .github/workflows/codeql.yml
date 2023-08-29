@@ -1,0 +1,101 @@
+name: "CodeQL-Security"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ${{ matrix.language == 'swift' && 'macos-latest' || 'ubuntu-latest' }}
+    timeout-minutes: ${{ matrix.language == 'swift' && 120 || 360 }}
+
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: read
+      deployments: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['python', 'javascript', 'go']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        if: ${{ matrix.language == 'python' }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        if: ${{ matrix.language == 'python' && matrix.fileExists }}
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+
+      - name: Set up JavaScript
+        if: ${{ matrix.language == 'javascript' }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install JavaScript dependencies
+        if: ${{ matrix.language == 'javascript' && matrix.fileExists }}
+        run: npm ci
+
+      - name: Set up Go
+        if: ${{ matrix.language == 'go' }}
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.17'
+
+      - name: Install Go dependencies
+        if: ${{ matrix.language == 'go' && matrix.fileExists }}
+        run: go mod download
+
+      - name: Detect repository language
+        id: detect-language
+        run: echo "languages=${{ matrix.language }}" >> $GITHUB_ENV
+
+      - name: Copy custom CodeQL configuration
+        run: cp .github/codeql/codeql-config.yml ${{ runner.workspace }}/.github/codeql-config.yml
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ env.languages }}
+          setup-python-dependencies: false
+
+      - name: Perform CodeQL-Security Analysis
+        id: CodeQL
+        uses: github/codeql-action/analyze@v2
+
+      - name: Upload JavaScript SARIF
+        if: matrix.language == 'javascript'
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ runner.workspace }}/results/javascript.sarif
+          category: "Code Scanning: JavaScript"
+
+      - name: Upload Python SARIF
+        if: matrix.language == 'python'
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ runner.workspace }}/results/python.sarif
+          category: "Code Scanning: Python"
+
+      - name: Upload Go SARIF
+        if: matrix.language == 'go'
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ runner.workspace }}/results/go.sarif
+          category: "Code Scanning: Go"
