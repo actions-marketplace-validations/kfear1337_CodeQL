@@ -1,24 +1,8 @@
-import sqlite3
+import subprocess
 
-def get_user(username):
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-
-    query = "SELECT * FROM users WHERE username = '" + username + "'"
-    cursor.execute(query)
-
-    user = cursor.fetchone()
-
-    conn.close()
-
-    return user
+def execute_command(command):
+    subprocess.call(command, shell=True)
 
 # Example usage
-username = input("Enter a username: ")
-user = get_user(username)
-
-if user:
-    print("User found:")
-    print(user)
-else:
-    print("User not found.")
+user_input = input("Enter a command to execute: ")
+execute_command(user_input)
