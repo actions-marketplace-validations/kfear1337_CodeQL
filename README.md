@@ -9,6 +9,18 @@
 
 This GitHub Actions workflow runs CodeQL security analysis on your repository. It analyzes the code for potential security vulnerabilities and generates SARIF reports for different programming languages.
 
+## How it works?
+
+Example for if an attacker pull request:
+
+[Pull Request](https://github.com/kfear1337/CodeQL/pull/1)
+
+It will show here:
+[Security Report](https://github.com/kfear1337/CodeQL/security/code-scanning?query=pr%3A1+tool%3ACodeQL+is%3Aopen)
+
+Read more:
+[CodeQL Advance Security](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning)
+
 ## Workflow Description
 
 The workflow is triggered on `push` and `pull_request` events on the `main` branch. It also runs daily at midnight (UTC) using a cron schedule.
