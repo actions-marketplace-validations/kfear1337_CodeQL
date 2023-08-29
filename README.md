@@ -33,20 +33,6 @@ To use this workflow in your repository, follow these steps:
 
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC).
 
-## How it works?
-
-Example for if an attacker pull request:
-
-[Pull Request](https://github.com/kfear1337/CodeQL/pull/1)
-
-It will show here:
-[Security Report](https://github.com/kfear1337/CodeQL/security/code-scanning?query=pr%3A1+tool%3ACodeQL+is%3Aopen)
-
-Read more:
-[CodeQL Advance Security](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning)
-
-
-
 ## Configuration
 
 The workflow can be configured to analyze different programming languages by modifying the `matrix.language` field in the workflow file. The currently supported languages are Python, JavaScript, and Go.
@@ -97,3 +83,8 @@ Follow these steps to extend the workflow for new languages and update the SARIF
 ## License
 
 This workflow is licensed under the [MIT License](LICENSE).
+
+## My Gist
+
+You can find my Gist on GitHub at the following link:
+[gist.github.com/kfear1337/4f1c754aba3dd66a8c463b26695eba56](https://gist.github.com/kfear1337/4f1c754aba3dd66a8c463b26695eba56)
