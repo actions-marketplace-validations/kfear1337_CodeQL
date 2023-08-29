@@ -67,7 +67,7 @@ jobs:
         run: echo "languages=${{ matrix.language }}" >> $GITHUB_ENV
 
       - name: Copy custom CodeQL configuration
-        run: cp .github/codeql/codeql-config.yml ${{ runner.workspace }}/.github/codeql-config.yml
+        run: cp .github/codeql/codeql-config.yml .github/codeql/codeql-config.yml
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
