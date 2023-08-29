@@ -33,6 +33,11 @@ To use this workflow in your repository, follow these steps:
 
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC).
 
+## How it work ?
+
+Example for if attacker pull request :
+https://github.com/kfear1337/CodeQL/pull/1
+
 ## Configuration
 
 The workflow can be configured to analyze different programming languages by modifying the `matrix.language` field in the workflow file. The currently supported languages are Python, JavaScript, and Go.
