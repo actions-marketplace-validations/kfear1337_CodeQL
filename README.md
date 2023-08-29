@@ -33,10 +33,19 @@ To use this workflow in your repository, follow these steps:
 
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC).
 
-## How it work ?
+## How it works?
 
-Example for if attacker pull request :
-https://github.com/kfear1337/CodeQL/pull/1
+Example for if an attacker pull request:
+
+[Pull Request](https://github.com/kfear1337/CodeQL/pull/1)
+
+It will show here:
+[Security Report](https://github.com/kfear1337/CodeQL/security/code-scanning?query=pr%3A1+tool%3ACodeQL+is%3Aopen)
+
+Read more:
+[CodeQL Advance Security](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning)
+
+
 
 ## Configuration
 
