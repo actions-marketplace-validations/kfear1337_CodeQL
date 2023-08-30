@@ -102,15 +102,14 @@ jobs:
       # since it public for artifact just for incase you can disable this later by block #
       # for using this :
         # 1.put secrets called "GPG_PASSPHRASE" in your Repository Actions secrets and variables at Settings and about value is your GPG PASSPHRASE
-      - name: Configure GPG agent
-        id: GPG_Agent
-        run: echo "pinentry-mode loopback" >> $HOME/.gnupg/gpg.conf
 
       - name: Encrypt SARIF file
         if: ${{ matrix.language }} && env.languages != ''
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
+          mkdir -p $HOME/.gnupg
+          echo "pinentry-mode loopback" >> $HOME/.gnupg/gpg.conf
           echo "${{ env.GPG_PASSPHRASE }}" | gpg --batch --import <(curl -sSL https://github.com/${{ github.repository_owner }}.gpg)
           gpg --symmetric --cipher-algo AES256 --output ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg --recipient "${{ github.repository_owner }}" ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
       
