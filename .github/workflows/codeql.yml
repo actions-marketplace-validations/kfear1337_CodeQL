@@ -91,32 +91,25 @@ jobs:
           # snippets for SARIF file
           add-snippets: true
 
-      - name: Upload JavaScript SARIF for Analysis Result
-        if: matrix.language == 'javascript' && env.languages != ''
-        id: upload-javascript-sarif
+      - name: Upload ${{ matrix.language }} SARIF for Analysis Result
+        if: ${{ matrix.language }} && env.languages != ''
+        id: upload-Analysis_Result-sarif
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: ${{ runner.workspace }}/results/javascript.sarif
+          sarif_file: ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
           category: "Analysis Result: ${{ matrix.language }}"
 
-      - name: Upload Python SARIF for Analysis Result
-        if: matrix.language == 'python' && env.languages != ''
-        id: upload-python-sarif
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: ${{ runner.workspace }}/results/python.sarif
-          category: "Analysis Result: ${{ matrix.language }}"
-
-      - name: Upload Go SARIF for Analysis Result
-        if: matrix.language == 'go' && env.languages != ''
-        id: upload-go-sarif
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: ${{ runner.workspace }}/results/go.sarif
-          category: "Analysis Result: ${{ matrix.language }}"
+      # since it public for artifact just for incase you can disable this later by block #
+      # for using this :
+        # 1.put secrets called "GPG_PASSPHRASE" in your Repository Actions secrets and variables at Settings and about value is your GPG PASSPHRASE
+      - name: Encrypt Analysis Result 
+        id: Encrypt-Analysis_Result
+        if: ${{ matrix.language }} && env.languages != ''
+        run: |
+          gpg --symmetric --cipher-algo AES256 --output ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg --passphrase ${{ secrets.GPG_PASSPHRASE }} ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Analysis_Result
-          path: ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
+          path: ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg
