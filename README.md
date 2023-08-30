@@ -20,7 +20,7 @@ It will show here:
 ![Example Image](https://i.imgur.com/F6ruMrL.png)
 
 Read more:
-[CodeQL Advanced Security](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning)
+[CodeQL : Code Scanning](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql)
 
 ## Workflow Description
 
