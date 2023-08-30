@@ -108,9 +108,14 @@ jobs:
           mkdir -p $HOME/.gnupg
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          REPO_OWNER_KEY_ID=$(gpg --list-keys --with-colons | awk -F: '/pub/{print $5; exit}')
-          gpg --encrypt --recipient "${{ env.REPO_OWNER_KEY_ID }}" --output ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
-      
+          gpg --list-keys --with-colons
+          RECIPIENT_KEY_ID=$(gpg --list-keys --with-colons | awk -F: '/^fpr:::::::::/{ print $11; exit }')
+          if [ -z "${{ env.RECIPIENT_KEY_ID }}" ]; then
+            echo "ERROR: Recipient key ID not found."
+            exit 1
+          fi
+          gpg -e -r ${{ env.RECIPIENT_KEY_ID }} ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
+
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
         with:
