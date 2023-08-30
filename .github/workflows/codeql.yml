@@ -107,9 +107,10 @@ jobs:
         if: ${{ matrix.language }} && env.languages != ''
         id: Encrypt_Analysis
         run: |
-          curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
-          gpg --import keyfile
-          gpg --encrypt --recipient `echo $(git config user.signingkey)` ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
+          echo "curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o `keyfile`
+          gpg --import `keyfile`
+          gpg --list-keys
+          gpg --encrypt --recipient `keyfile` ${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
