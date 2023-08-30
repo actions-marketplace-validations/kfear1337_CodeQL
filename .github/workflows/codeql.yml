@@ -102,6 +102,8 @@ jobs:
 
       # since it public for artifact 
       # just for incase you can disable this later by block #
+      # makesure setup secrets KEY_ID
+      # variable of KEY_ID is your KEY_ID
 
       - name: Encrypt Analysis Result
         if: ${{ matrix.language }} && env.languages != ''
@@ -109,7 +111,8 @@ jobs:
         run: |
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          gpg --encrypt --recipient FC7DA17EE19F0264 "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
+          gpg --list-keys
+          gpg --encrypt --recipient ${{ secrets.KEY_ID }} --batch --yes "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
