@@ -14,7 +14,10 @@ Example for if someone pulls a request:
 
 [Pull Request](https://github.com/kfear1337/CodeQL/pull/1)
 
-It will show here:
+It will show in your repository 
+
+example here:
+
 [Security Report](https://github.com/kfear1337/CodeQL/security/code-scanning?query=pr%3A1+tool%3ACodeQL+is%3Aopen)
 
 ![Example Image](https://i.imgur.com/F6ruMrL.png)
