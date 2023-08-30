@@ -42,6 +42,7 @@ The workflow consists of the following steps:
 5. Initialize CodeQL
 6. Perform CodeQL security analysis
 7. Upload SARIF reports for each programming language analyzed
+8. Download Result as Artifacts when each programming language analyzed complete [**NEW**]
 
 ## Usage
 
