@@ -10,19 +10,21 @@ This GitHub Actions workflow runs CodeQL security analysis on your repository. I
 
 ## How it works?
 
-Example for if someone pulls a request:
+#### Example for if someone pulls a request:
 
 [Pull Request](https://github.com/kfear1337/CodeQL/pull/1)
 
-It will show in your repository 
+[Code scanning results](https://github.com/kfear1337/CodeQL/pull/1/checks?check_run_id=16297913027)
 
-example here:
+#### It will show in your repository 
+
+**example here:**
 
 [Security Report](https://github.com/kfear1337/CodeQL/security/code-scanning?query=pr%3A1+tool%3ACodeQL+is%3Aopen)
 
 ![Example Image](https://i.imgur.com/F6ruMrL.png)
 
-Read more:
+### Read more:
 [CodeQL : Code Scanning](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql)
 
 ## Workflow Description
