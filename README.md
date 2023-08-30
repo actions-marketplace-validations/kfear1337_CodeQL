@@ -6,20 +6,21 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue.svg)](https://www.typescriptlang.org/)
 
-
 This GitHub Actions workflow runs CodeQL security analysis on your repository. It analyzes the code for potential security vulnerabilities and generates SARIF reports for different programming languages.
 
 ## How it works?
 
-Example for if an someone pull request:
+Example for if someone pulls a request:
 
 [Pull Request](https://github.com/kfear1337/CodeQL/pull/1)
 
 It will show here:
 [Security Report](https://github.com/kfear1337/CodeQL/security/code-scanning?query=pr%3A1+tool%3ACodeQL+is%3Aopen)
 
+![Example Image](https://i.imgur.com/F6ruMrL.png)
+
 Read more:
-[CodeQL Advance Security](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning)
+[CodeQL Advanced Security](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning)
 
 ## Workflow Description
 
@@ -110,7 +111,6 @@ To add support for a new programming language:
 6. Update the SARIF report names in the "Results" section to include the new language. For example, you can add a line like `- Ruby SARIF: Contains the results of the Ruby analysis.`.
 
 Please note that the current version of this repository only supports Python, JavaScript, TypeScript, and Go. If you want to add support for additional languages, you'll need to follow the steps mentioned above and adjust the workflow file accordingly.
-
 
 ## License
 
