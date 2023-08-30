@@ -17,10 +17,6 @@ packs:
     - codeql/go-queries
     #- codeql/go-all
     #- codeql/go-upgrade
-  java:
-    - codeql/java-queries
-    #- codeql/java-all
-    #- codeql/java-upgrades
 
 # query-filters:
 # - exclude:

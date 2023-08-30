@@ -26,7 +26,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['python', 'javascript', 'go', 'java']
+        # this can be modified example if your repo is only python then remove 'javascript', 'go'
+        language: ['python', 'javascript', 'go']
 
     steps:
       - name: Checkout repository
@@ -70,15 +71,7 @@ jobs:
         if: ${{ matrix.language == 'go' && matrix.fileExists }}
         run: go mod download
 
-      - name: Set up Java
-        if: ${{ matrix.language == 'java' }}
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-
       - name: Initialize CodeQL
-        if: ${{ env.languages != '' }}
         uses: github/codeql-action/init@v2
         with:
           languages: ${{ env.languages }}
@@ -113,14 +106,6 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ runner.workspace }}/results/go.sarif
-          category: "Analysis Result: ${{ matrix.language }}"
-
-      - name: Upload Java SARIF for Analysis Result
-        if: matrix.language == 'java' && env.languages != ''
-        id: upload-java-sarif
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: ${{ runner.workspace }}/results/java.sarif
           category: "Analysis Result: ${{ matrix.language }}"
 
       - name: Upload Analysis Result As Artifact
