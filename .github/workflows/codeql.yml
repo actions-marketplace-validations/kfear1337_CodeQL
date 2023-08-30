@@ -78,9 +78,10 @@ jobs:
           distribution: 'adopt'
 
       - name: Initialize CodeQL
+        if: ${{ env.languages != '' }}
         uses: github/codeql-action/init@v2
         with:
-          languages: ${{ matrix.language != '' }}
+          languages: ${{ env.languages }}
           config-file: ./.github/codeql/codeql-config.yml
           setup-python-dependencies: false
           queries: +security-and-quality,security-experimental
