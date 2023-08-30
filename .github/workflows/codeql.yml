@@ -111,8 +111,7 @@ jobs:
         run: |
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          gpg --list-keys
-          gpg --encrypt --recipient ${{ secrets.KEY_ID }} --batch --yes "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
+          gpg --encrypt --recipient ${{ secrets.KEY_ID }} --trust-model always --batch --yes "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
