@@ -108,14 +108,8 @@ jobs:
           sarif_file: ${{ runner.workspace }}/results/go.sarif
           category: "Code Scanning: Go"
 
-      - name: Download Analysis Result
-        if: ${{ needs.upload-javascript-sarif.result == 'success' && needs.upload-python-sarif.result == 'success' && needs.upload-go-sarif.result == 'success' }}
-        run: |
-          mkdir -p analysis_result
-          cp -R ${{ runner.workspace }}/results analysis_result
-
-      - name: Upload Analysis Result Artifact
+      - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: analysis_result
-          path: analysis_result
+          name: Analysis_Result
+          path: ${{ runner.workspace }}/results/${{ env.languages != '' }}.sarif
