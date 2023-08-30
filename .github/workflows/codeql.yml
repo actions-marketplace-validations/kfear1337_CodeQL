@@ -83,29 +83,30 @@ jobs:
         if: ${{ env.languages != '' }}
         id: CodeQL
         uses: github/codeql-action/analyze@v2
-        with:
-          category: "Code Scanning: ${{ matrix.language }}"
 
-      - name: Upload JavaScript SARIF
+      - name: Upload JavaScript SARIF for Analysis Result
         if: matrix.language == 'javascript' && env.languages != ''
         id: upload-javascript-sarif
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ runner.workspace }}/results/javascript.sarif
+          category: "Analysis Result: ${{ matrix.language }}"
 
-      - name: Upload Python SARIF
+      - name: Upload Python SARIF for Analysis Result
         if: matrix.language == 'python' && env.languages != ''
         id: upload-python-sarif
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ runner.workspace }}/results/python.sarif
+          category: "Analysis Result: ${{ matrix.language }}"
 
-      - name: Upload Go SARIF
+      - name: Upload Go SARIF for Analysis Result
         if: matrix.language == 'go' && env.languages != ''
         id: upload-go-sarif
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ runner.workspace }}/results/go.sarif
+          category: "Analysis Result: ${{ matrix.language }}"
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
