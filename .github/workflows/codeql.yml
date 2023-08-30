@@ -109,7 +109,7 @@ jobs:
         run: |
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          gpg --encrypt --recipient key ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
+          gpg --encrypt --recipient keyfile "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
