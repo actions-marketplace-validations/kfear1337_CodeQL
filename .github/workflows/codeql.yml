@@ -13,8 +13,8 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ${{ matrix.language == 'java' && 'ubuntu-latest' || matrix.language == 'swift' && 'macos-latest' || 'ubuntu-latest' }}
-    timeout-minutes: ${{ matrix.language == 'java' && 360 || matrix.language == 'swift' && 120 || 360 }}
+    runs-on: ${{ matrix.language == 'swift' && 'macos-latest' || 'ubuntu-latest' }}
+    timeout-minutes: ${{ matrix.language == 'swift' && 120 || 360 }}
 
     permissions:
       actions: read
