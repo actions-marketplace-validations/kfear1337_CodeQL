@@ -111,7 +111,7 @@ jobs:
           mkdir -p $HOME/.gnupg
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          gpg -e -r ${{ env.signingkey }} ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
+          gpg --encrypt ${{ runner.workspace }}/results/${{ matrix.language }}.sarif --recipent ${{ env.signingkey }}
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
