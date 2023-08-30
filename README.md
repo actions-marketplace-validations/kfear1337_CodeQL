@@ -41,7 +41,7 @@ The workflow consists of the following steps:
 4. Detect the repository's primary language
 5. Initialize CodeQL
 6. Perform CodeQL security analysis
-7. Upload SARIF reports for each programming language analyzed
+7. Force Upload SARIF reports for each programming language analyzed `(better than from Analyze default workflow)`
 8. Download Result as `Artifacts` in the `Workflow` when each programming language analyzed complete [**NEW**]
 
 ## Usage
