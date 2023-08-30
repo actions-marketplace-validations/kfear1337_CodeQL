@@ -26,6 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # this can be modified example if your repo is only python then remove 'javascript', 'go'
         language: ['python', 'javascript', 'go']
 
     steps:
