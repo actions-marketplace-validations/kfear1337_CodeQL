@@ -22,6 +22,8 @@ This GitHub Actions workflow runs CodeQL security analysis on your repository. I
 
 [Security Report](https://github.com/kfear1337/CodeQL/security/code-scanning?query=pr%3A1+tool%3ACodeQL+is%3Aopen)
 
+![Example Image](https://i.imgur.com/ZygPoP8.png)
+
 ![Example Image](https://i.imgur.com/F6ruMrL.png)
 
 ### Read more:
