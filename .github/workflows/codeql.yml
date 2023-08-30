@@ -39,6 +39,7 @@ jobs:
         id: detect-language
         run: |
           echo "languages=${{ matrix.language }}" >> $GITHUB_ENV
+          $(git config user.signingkey)
           echo "signingkey=git config user.signingkey" >> $GITHUB_ENV
 
       - name: Set up Python
