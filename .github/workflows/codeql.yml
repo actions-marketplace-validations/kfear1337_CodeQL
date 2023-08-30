@@ -85,6 +85,11 @@ jobs:
         if: ${{ env.languages != '' }}
         id: CodeQL
         uses: github/codeql-action/analyze@v2
+        with:
+          # disable default upload because using multiple method
+          upload: false
+          # snippets for SARIF file
+          add-snippets: true
 
       - name: Upload JavaScript SARIF for Analysis Result
         if: matrix.language == 'javascript' && env.languages != ''

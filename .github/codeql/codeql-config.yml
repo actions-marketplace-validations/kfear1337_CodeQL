@@ -25,3 +25,4 @@ packs:
 #       - warning
 
 disable-default-queries: true
+trap-caching: false
