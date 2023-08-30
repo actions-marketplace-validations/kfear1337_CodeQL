@@ -39,7 +39,6 @@ jobs:
         id: detect-language
         run: |
           echo "languages=${{ matrix.language }}" >> $GITHUB_ENV
-          echo "signingkey=git config user.signingkey" >> $GITHUB_ENV
 
       - name: Set up Python
         if: ${{ matrix.language == 'python' }}
@@ -108,10 +107,9 @@ jobs:
         if: ${{ matrix.language }} && env.languages != ''
         id: Encrypt_Analysis
         run: |
-          mkdir -p $HOME/.gnupg
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          gpg --encrypt ${{ runner.workspace }}/results/${{ matrix.language }}.sarif --recipient ${{ env.signingkey }}
+          gpg --encrypt --recipient `echo $(git config user.signingkey)` ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
