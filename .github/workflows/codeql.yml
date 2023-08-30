@@ -106,7 +106,8 @@ jobs:
         id: Encrypt-Analysis_Result
         if: ${{ matrix.language }} && env.languages != ''
         run: |
-          gpg --symmetric --cipher-algo AES256 --output ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg --passphrase ${{ secrets.GPG_PASSPHRASE }} ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
+          gpg --import <(curl -sSL https://github.com/${{ github.repository_owner }}.gpg)
+          gpg --symmetric --cipher-algo AES256 --output ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg --recipient "${{ github.repository_owner }}" ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
