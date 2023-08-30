@@ -86,6 +86,7 @@ jobs:
 
       - name: Upload JavaScript SARIF
         if: matrix.language == 'javascript' && env.languages != ''
+        id: upload-javascript-sarif
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ runner.workspace }}/results/javascript.sarif
@@ -93,6 +94,7 @@ jobs:
 
       - name: Upload Python SARIF
         if: matrix.language == 'python' && env.languages != ''
+        id: upload-python-sarif
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ runner.workspace }}/results/python.sarif
@@ -100,7 +102,20 @@ jobs:
 
       - name: Upload Go SARIF
         if: matrix.language == 'go' && env.languages != ''
+        id: upload-go-sarif
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ runner.workspace }}/results/go.sarif
           category: "Code Scanning: Go"
+
+      - name: Download Analysis Result
+        if: ${{ needs.upload-javascript-sarif.result == 'success' && needs.upload-python-sarif.result == 'success' && needs.upload-go-sarif.result == 'success' }}
+        run: |
+          mkdir -p analysis_result
+          cp -R ${{ runner.workspace }}/results analysis_result
+
+      - name: Upload Analysis Result Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: analysis_result
+          path: analysis_result
