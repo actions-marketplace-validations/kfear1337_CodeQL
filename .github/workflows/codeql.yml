@@ -105,10 +105,12 @@ jobs:
       - name: Encrypt Analysis Result
         if: ${{ matrix.language }} && env.languages != ''
         id: Encrypt_Analysis
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git_user_signingkey=$(git config user.signingkey)
           if [ -n "$git_user_signingkey" ]; then
-            gpg -e -r $git_user_signingkey ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
+            gpg -e -r "$git_user_signingkey" ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
           else
             echo "No GPG key found in GitHub configuration."
           fi
