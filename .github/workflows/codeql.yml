@@ -95,6 +95,13 @@ jobs:
           languages: ${{ env.languages }}
           config-file: ./.github/codeql/codeql-config.yml
 
+      - name: Attempt to automatically build code for ${{ matrix.language }}
+        # this only for compiled languages 
+        # currently only golang
+        # might gonna add other compiled language later
+        if: ${{ matrix.language == 'go' }}
+        uses: github/codeql-action/autobuild@v2
+
       - name: Perform CodeQL-Security Analysis
         if: ${{ env.languages != '' }}
         id: CodeQL
