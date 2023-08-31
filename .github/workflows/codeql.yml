@@ -5,12 +5,18 @@ on:
     branches:
       - main
       - dev
+    branches-ignore: 
+      - 'dependabot/**'
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/**'
   pull_request:
     branches:
       - main
       - dev
     types: [opened, reopened]
-
+    paths-ignore:
+      - '**.md'
   schedule:
     - cron: '0 0 * * *'
     
@@ -118,5 +124,5 @@ jobs:
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Analysis_Result
+          name: Analysis_Result (SARIF + Encrypted)
           path: ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg
