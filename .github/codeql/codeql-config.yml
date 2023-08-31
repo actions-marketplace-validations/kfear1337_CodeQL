@@ -12,7 +12,7 @@
 #       token: \$\{{ secrets.GHCR_TOKEN }}
 
 packs:
-  # Use these packs for JavaScript and TypeScript analysis
+  # Use these packs 
   javascript:
     - codeql/javascript-experimental-atm-queries
     # disable this since only need queries
@@ -40,6 +40,6 @@ trap-caching: false
 setup-python-dependencies: false
 # list of queries 
 queries:
-  - security-and-quality
-  - security-experimental
-  - security-extended
+  - uses: security-and-quality
+  - uses: security-experimental
+  - uses: security-extended
