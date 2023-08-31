@@ -4,14 +4,25 @@ on:
   push:
     branches:
       - main
+      - dev
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/**'
   pull_request:
     branches:
       - main
+      - dev
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/**'
     types: [opened, reopened]
 
   schedule:
     - cron: '0 0 * * *'
     
+  # allows you to run this workflow manually
+  workflow_dispatch:
+
 jobs:
   analyze:
     name: Analyze
@@ -29,7 +40,7 @@ jobs:
       fail-fast: false
       matrix:
         # this can be modified example if your repo is only python then remove 'javascript', 'go'
-        language: ['python', 'javascript', 'go']
+        language: ['go']
 
     steps:
       - name: Checkout repository
@@ -75,12 +86,12 @@ jobs:
         run: go mod download
 
       - name: Initialize CodeQL
+        id: InitCodeQL
         uses: github/codeql-action/init@v2
         with:
+          # Configuration for init codeQL
           languages: ${{ env.languages }}
           config-file: ./.github/codeql/codeql-config.yml
-          setup-python-dependencies: false
-          queries: +security-and-quality,security-experimental
 
       - name: Perform CodeQL-Security Analysis
         if: ${{ env.languages != '' }}
@@ -111,10 +122,10 @@ jobs:
         run: |
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          gpg --encrypt --recipient ${{ secrets.KEY_ID }} --trust-model always --batch --yes "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
+          gpg --encrypt --recipient "$(gpg --list-keys --keyid-format LONG | grep '^pub' | awk '{print $2}' | awk -F'/' '{print $2}')" --trust-model always "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Analysis_Result
+          name: Analysis_Result (SARIF + Encrypted)
           path: ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg

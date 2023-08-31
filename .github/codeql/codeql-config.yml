@@ -1,7 +1,18 @@
 # This a codeql custom config put in path '/.github/codeql/'
 
+# registries: |
+#   - url: https://containers.GHEHOSTNAME1/v2/
+#     packages:
+#     - my-company/*
+#     - my-company2/*
+#       token: \$\{{ secrets.GHEHOSTNAME1_TOKEN }}
+
+#     - url: https://ghcr.io/v2/
+#       packages: */*
+#       token: \$\{{ secrets.GHCR_TOKEN }}
+
 packs:
-  # Use these packs for JavaScript and TypeScript analysis
+  # Use these packs 
   javascript:
     - codeql/javascript-experimental-atm-queries
     # disable this since only need queries
@@ -26,3 +37,9 @@ packs:
 
 disable-default-queries: true
 trap-caching: false
+setup-python-dependencies: false
+# list of queries 
+queries:
+  - uses: security-and-quality
+  - uses: security-experimental
+  - uses: security-extended
