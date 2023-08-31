@@ -7,19 +7,22 @@ on:
       - dev
     paths-ignore:
       - '**.md'
-      #- '.github/workflows/**'
+      - '.github/workflows/**'
   pull_request:
     branches:
       - main
       - dev
     paths-ignore:
       - '**.md'
-      #- '.github/workflows/**'
+      - '.github/workflows/**'
     types: [opened, reopened]
 
   schedule:
     - cron: '0 0 * * *'
     
+  # allows you to run this workflow manually
+  workflow_dispatch:
+
 jobs:
   analyze:
     name: Analyze
@@ -83,12 +86,12 @@ jobs:
         run: go mod download
 
       - name: Initialize CodeQL
+        id: InitCodeQL
         uses: github/codeql-action/init@v2
         with:
+          # Configuration for init codeQL
           languages: ${{ env.languages }}
           config-file: ./.github/codeql/codeql-config.yml
-          setup-python-dependencies: false
-          queries: +security-and-quality,security-experimental
 
       - name: Perform CodeQL-Security Analysis
         if: ${{ env.languages != '' }}
