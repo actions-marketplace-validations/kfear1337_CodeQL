@@ -31,7 +31,7 @@ jobs:
       fail-fast: false
       matrix:
         # this can be modified example if your repo is only python then remove 'javascript', 'go'
-        language: ['python', 'javascript', 'go']
+        language: ['go']
 
     steps:
       - name: Checkout repository
@@ -113,7 +113,7 @@ jobs:
         run: |
           curl -sSL "https://github.com/${{ github.repository_owner }}.gpg" -o keyfile
           gpg --import keyfile
-          gpg --encrypt --recipient echo "$(git config user.signingkey)" --trust-model always --batch --yes "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
+          gpg --encrypt --recipient `echo $(git config user.signingkey)` --trust-model always --batch --yes "${{ runner.workspace }}/results/${{ matrix.language }}.sarif"
 
       - name: Upload Analysis Result As Artifact
         uses: actions/upload-artifact@v3
