@@ -38,5 +38,8 @@ packs:
 disable-default-queries: true
 trap-caching: false
 setup-python-dependencies: false
-#list of queries 
-queries: +security-and-quality,security-experimental,security-extended
+# list of queries 
+queries:
+  - security-and-quality
+  - security-experimental
+  - security-extended
