@@ -5,19 +5,18 @@ on:
     branches:
       - main
       - dev
-    branches-ignore: 
-      - 'dependabot/**'
     paths-ignore:
       - '**.md'
-    #  - '.github/workflows/**'
+      - '.github/workflows/**'
   pull_request:
     branches:
       - main
       - dev
-    types: [opened, reopened]
     paths-ignore:
       - '**.md'
-     # - '.github/workflows/**'
+      - '.github/workflows/**'
+    types: [opened, reopened]
+
   schedule:
     - cron: '0 0 * * *'
     
