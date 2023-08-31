@@ -4,14 +4,12 @@ on:
   push:
     branches:
       - main
-      - dev
     paths-ignore:
       - '**.md'
       - '.github/workflows/**'
   pull_request:
     branches:
       - main
-      - dev
     paths-ignore:
       - '**.md'
       - '.github/workflows/**'
@@ -40,7 +38,7 @@ jobs:
       fail-fast: false
       matrix:
         # this can be modified example if your repo is only python then remove 'javascript', 'go'
-        language: ['go']
+        language: ['go','javascript','python']
 
     steps:
       - name: Checkout repository
