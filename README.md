@@ -24,7 +24,7 @@ This GitHub Actions workflow runs CodeQL security analysis on your repository. I
 
 ![Example Image](https://i.imgur.com/ZygPoP8.png)
 
-![Example Image](https://i.imgur.com/F6ruMrL.png)
+![Example Image](https://i.imgur.com/geaawB7.png)
 
 ### Read more:
 [CodeQL : Code Scanning](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql)
@@ -43,22 +43,22 @@ The workflow consists of the following steps:
 6. Perform CodeQL security analysis
 7. Force Upload SARIF reports for each programming language analyzed `(better than from Analyze default workflow)`
 8. Download Result as `Artifacts` in the `Workflow` when each programming language analyzed complete [**NEW**]
+9. The result, as `Artifacts`, is encrypted use `GPG Key` within a container of SARIF file. [**NEW**]
 
 ## Usage
 
 To use this workflow in your repository, follow these steps:
 
-1. Create a new file named `.github/workflows/codeql.yml` in your repository.
-2. Copy the contents of the `codeql.yml` file from the repository you mentioned into the newly created `codeql.yml` file.
-3. Create a new directory named `.github/codeql` in your repository.
-4. Create a new file named `codeql-config.yml` inside the `.github/codeql` directory.
-5. Copy the contents of your CodeQL configuration file into the newly created `.github/codeql/codeql-config.yml` file.
-6. Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
-7. Commit and push the changes to your repository.
+1. Create a new file named `codeql.yml` inside the `.github/workflows` directory.
+2. Copy the contents of the `action.yml` file from the repository you mentioned into the newly created `codeql.yml` file.
+3. Create a new file named `codeql-config.yml` inside the `.github/workflows` directory.
+4. Copy the contents of your CodeQL configuration file into the newly created `.github/workflows/codeql-config.yml` file.
+5. Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
+6. Commit and push the changes to your repository.
 
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC), based on the provided configuration.
 
-Please make sure that the workflow file is located in the `.github/workflows` directory, and the CodeQL configuration file is located in the `.github/codeql` directory of your repository.
+Please make sure that the workflow file is located in the `.github/workflows` directory, and the CodeQL configuration file is located in the `.github/workflows/` directory of your repository.
 
 Feel free to modify the workflow file and the CodeQL configuration file to fit your specific needs and configurations.
 
