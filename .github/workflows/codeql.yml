@@ -7,14 +7,14 @@ on:
       - dev
     paths-ignore:
       - '**.md'
-      - '.github/workflows/**'
+      #- '.github/workflows/**'
   pull_request:
     branches:
       - main
       - dev
     paths-ignore:
       - '**.md'
-      - '.github/workflows/**'
+      #- '.github/workflows/**'
     types: [opened, reopened]
 
   schedule:
