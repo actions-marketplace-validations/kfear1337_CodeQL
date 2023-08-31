@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - main
+      - dev
     paths-ignore:
       - '**.md'
       - '.github/workflows/**'
   pull_request:
     branches:
       - main
+      - dev
     paths-ignore:
       - '**.md'
       - '.github/workflows/**'
@@ -109,10 +111,8 @@ jobs:
           sarif_file: ${{ runner.workspace }}/results/${{ matrix.language }}.sarif
           category: "Analysis Result: ${{ matrix.language }}"
 
-      # since it public for artifact 
+      # since it public everyone can see in artifact about Analysis Result
       # just for incase you can disable this later by block #
-      # makesure setup secrets KEY_ID
-      # variable of KEY_ID is your KEY_ID
 
       - name: Encrypt Analysis Result
         if: ${{ matrix.language }} && env.languages != ''
