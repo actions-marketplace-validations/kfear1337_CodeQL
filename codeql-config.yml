@@ -42,5 +42,6 @@ packs:
   queries:
     - uses: security-and-quality
     - uses: security-experimental
-    - uses: security-extended
+    # disable extended for a tmp
+    #- uses: security-extended
   
