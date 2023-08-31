@@ -1,4 +1,4 @@
-# This a codeql custom config put in path '/.github/codeql/'
+# will focusing this later
 
 # registries: |
 #   - url: https://containers.GHEHOSTNAME1/v2/
