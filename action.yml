@@ -2,16 +2,15 @@ name: "CodeQL-Security"
 
 on:
   push:
+  # modify this branch
     branches:
-      - main
-      - dev
+      - main 
     paths-ignore:
       - '**.md'
       - '.github/workflows/**'
   pull_request:
     branches:
       - main
-      - dev
     paths-ignore:
       - '**.md'
       - '.github/workflows/**'
