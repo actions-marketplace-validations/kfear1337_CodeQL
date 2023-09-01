@@ -51,7 +51,8 @@ The workflow consists of the following steps:
 To use this workflow in your repository, follow these steps:
 
 1. Create a new file named `action.yml` inside the `.github/workflows` directory.
-- `action.yml`
+2. Copy the contents of the `action.yml` file from the repository you mentioned into the newly created `codeql.yml` file.
+- `action.yml` > `codeql.yml`
 ```yml
 name: "CodeQL-Security"
 author: "kfear1337"
@@ -199,8 +200,8 @@ jobs:
           name: Analysis_Result (SARIF + Encrypted)
           path: ${{ runner.workspace }}/results/${{ matrix.language }}.sarif.gpg
 ```
-2. Copy the contents of the `action.yml` file from the repository you mentioned into the newly created `codeql.yml` file.
 3. Create a new file named `codeql-config.yml` inside the `.github/workflows/codeql/` directory.
+4. Copy the contents of your CodeQL configuration file into the newly created `.github/workflows/config/codeql-config.yml` file.
 - `codeql-config.yml`
 ```yml
 # will focusing this later
@@ -250,7 +251,6 @@ packs:
     # disable extended for a tmp
     #- uses: security-extended
   ```
-4. Copy the contents of your CodeQL configuration file into the newly created `.github/workflows/config/codeql-config.yml` file.
 5. Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
 6. Commit and push the changes to your repository.
 
