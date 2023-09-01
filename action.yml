@@ -1,5 +1,5 @@
 name: "CodeQL-Security"
-description: "CodeQL Security Workflow is a GitHub Actions workflow that runs CodeQL with custom configuration as security analysis on your repository. It analyzes the code for potential security vulnerabilities and generates SARIF reports for different programming languages."
+description: "GitHub Actions workflow for CodeQL security analysis."
 
 on:
   push:
