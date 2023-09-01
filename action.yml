@@ -1,6 +1,10 @@
 name: "CodeQL-Security"
 description: "GitHub Actions workflow for CodeQL security analysis."
 
+branding:
+  icon: 'activity'
+  color: 'blue'
+
 on:
   push:
   # modify this branch
