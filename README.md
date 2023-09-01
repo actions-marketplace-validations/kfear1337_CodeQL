@@ -5,6 +5,7 @@
 [![Go](https://img.shields.io/badge/Go-1.x-blue.svg)](https://golang.org/dl/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue.svg)](https://www.typescriptlang.org/)
+[![CodeQL-Security](https://github.com/kfear1337/CodeQL/actions/workflows/codeql.yml/badge.svg?event=schedule)](https://github.com/kfear1337/CodeQL/actions/workflows/codeql.yml)
 
 This GitHub Actions workflow runs CodeQL security analysis on your repository. It analyzes the code for potential security vulnerabilities and generates SARIF reports for different programming languages.
 
