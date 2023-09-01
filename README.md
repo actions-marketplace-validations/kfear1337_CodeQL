@@ -64,6 +64,8 @@ Feel free to modify the workflow file and the CodeQL configuration file to fit y
 
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC).
 
+You can download the latest release of CodeQL from [here](https://github.com/kfear1337/CodeQL/releases).
+
 ## Configuration
 
 The workflow can be configured to analyze different programming languages by modifying the `matrix.language` field in the workflow file. The currently supported languages are Python, JavaScript, and Go.
