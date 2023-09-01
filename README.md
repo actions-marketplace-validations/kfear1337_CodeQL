@@ -50,10 +50,10 @@ The workflow consists of the following steps:
 
 To use this workflow in your repository, follow these steps:
 
-1. Create a new file named `codeql.yml` inside the `.github/workflows` directory.
+1. Create a new file named `action.yml` inside the `.github/workflows` directory.
 2. Copy the contents of the `action.yml` file from the repository you mentioned into the newly created `codeql.yml` file.
-3. Create a new file named `codeql-config.yml` inside the `.github/workflows` directory.
-4. Copy the contents of your CodeQL configuration file into the newly created `.github/workflows/codeql-config.yml` file.
+3. Create a new file named `codeql-config.yml` inside the `.github/workflows/codeql/` directory.
+4. Copy the contents of your CodeQL configuration file into the newly created `.github/workflows/config/codeql-config.yml` file.
 5. Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
 6. Commit and push the changes to your repository.
 
@@ -66,6 +66,14 @@ Feel free to modify the workflow file and the CodeQL configuration file to fit y
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC).
 
 You can download the latest release of CodeQL from [here](https://github.com/kfear1337/CodeQL/releases).
+
+## Additional Usage if you download from latest release [here](https://github.com/kfear1337/CodeQL/releases).
+
+To use this workflow in your repository, follow these steps:
+
+1. Extract/Copy Inside A Folder `workflows` into `.github`
+2. Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
+3. Commit and push the changes to your repository.
 
 ## Configuration
 
