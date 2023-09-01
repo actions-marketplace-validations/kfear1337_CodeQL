@@ -59,7 +59,7 @@ To use this workflow in your repository, follow these steps:
 
 The workflow will now be triggered on `push` and `pull_request` events on the `main` branch, as well as daily at midnight (UTC), based on the provided configuration.
 
-Please make sure that the workflow file is located in the `.github/workflows` directory, and the CodeQL configuration file is located in the `.github/workflows/` directory of your repository.
+Please make sure that the workflow file is located in the `.github/workflows` directory, and the CodeQL configuration file is located in the `.github/workflows/codeql` directory of your repository.
 
 Feel free to modify the workflow file and the CodeQL configuration file to fit your specific needs and configurations.
 
@@ -71,9 +71,12 @@ You can download the latest release of CodeQL from [here](https://github.com/kfe
 
 To use this workflow in your repository, follow these steps:
 
-1. Extract/Copy Inside A Folder `workflows` into `.github`
-2. Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
-3. Commit and push the changes to your repository.
+- Extract/Copy File Inside A Folder `workflows` into `.github/workflows`
+- After extract/copy its should be `codeql.yml` and folder `codeql` for config `codeql-config.yml` Inside `.github/workflows`
+- Customize the workflow file and the CodeQL configuration file as needed. You can adjust the timeout, permissions, and other settings according to your requirements.
+- Commit and push the changes to your repository.
+
+Please make sure that the workflow file is located in the `.github/workflows` directory, and the CodeQL configuration file is located in the `.github/workflows/codeql` directory of your repository.
 
 ## Configuration
 
